@@ -1,0 +1,336 @@
+{% extends "base.html" %} {% block main %}
+<header class="topbar">
+  <nav class="navbar top-navbar navbar-expand-md navbar-expand bg-green text-white d-flex flex-column">
+    <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin1">
+      <ul class="navbar-nav float-left mr-auto">
+        <li class="nav-item "> 
+          <!--			page title  -->
+          <div id="titleSection" class="d-flex mr-2"><!--<img class='titleImage' src="textures/Logo-Corpus-Explorer---523.png">-->
+            <div id="brand" class="mr-2">Forge Graph</div>
+            <div id="projectTitle"><i>Hospital Nodes</i></div>
+          </div>
+        </li>
+        <li class="nav-item dropdown mega-dropdown">
+          <div id="search_form" class="d-flex search-form ui-widget" >
+            
+			  <ul class="main-drop-container">
+			  	
+						<span class="filter bg-black d-flex align-content-center justify-content-center align-items-center">Filter <i class="fa fa-chevron-down ml-2"></i></span>
+			  </ul>
+            
+            </div>
+        </li>
+        <li class="nav-item dropdown d-none"> <a class="nav-link" href="#section-2" id="navbarDropdown" role="button" aria-expanded="false"> <span class="d-md-block">Revenue Breakdown</span> </a> </li>
+      </ul>
+      <ul class="navbar-nav float-right">
+        <li class="nav-item dropdown text-white d-none"> <a class="nav-link text-muted waves-effect waves-dark pro-pic" href=""  aria-haspopup="true" aria-expanded="false"><img src="../../assets/images/users/1.jpg" alt="user" class="rounded-circle d-none text-white" width="31">Log Out</a> </li>
+      </ul>
+    </div>
+	  <div class="drop-down-container">
+	  		<ul class="dropdown bg-black d-flex m-0 p-0">
+                <li>
+                  <legend class="text-white mb-0">
+                  <p class="d-flex text-nowrap align-items-center"> <span class="text-white mr-1 filterLabel">Hospitals</span>
+                   
+        <select id="song_select">
+          <option value="">Kenyatta Hospital</option>
+          
+        </select>
+
+    
+                  </p>
+                  </legend>
+                </li>
+              
+                  <legend class="text-white mb-0">
+                  <p class="d-flex text-nowrap align-items-center"> <span class="text-white mr-1 ml-1 filterLabel">Result Size:</span>
+                    <select id="graphSizeSelector" class="form-control text-white border-0 nav-inputs">
+                      <option value="5">Very small</option>
+                      <option value="15">Small</option>
+                      <option value="30" selected="selected">Medium</option>
+                      <option value="60">Large</option>
+                      <option value="150">Very large</option>
+                    </select>
+                  </p>
+                  </legend>
+                </li>
+                <li>
+                     <form action="/upload-image" method="POST" enctype="multipart/form-data">
+
+        <div class="form-group">
+          <label>Select image</label>
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" name="file" id="image">
+            <label class="custom-file-label" for="file">Select image...</label>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Upload</button>
+
+      </form>
+                  
+                </li>
+                <li>
+                  <legend class="text-white mb-0">
+                  <p class="d-flex text-nowrap align-items-center"> <span class="text-white mr-1 ml-1 filterLabel">Categories:</span>
+                    <select id="categorySelector" class="form-control text-white border-0 nav-inputs">
+                      <option value="all">All</option>
+                      
+                    </select>
+                  </p>
+                  </legend>
+                </li>
+              </ul>
+	  </div>
+  </nav>
+	
+	
+</header>
+<section class="container-fluid">
+  <div class="row"> 
+    <!--		 left navigation bar-->
+    <div class="col-3 bg-black p-0 main-menu-section">
+      <div class="menu-container p-2 ml-4">
+        <form class="d-flex search-form">
+          <ul>
+            <li>
+              <input  id="searchGraph"  type="text" class="form-control" placeholder="Search in graph..."/>
+              
+            <button type="button" onclick="searchNode()" class="bg-black search-btn">Search</button>
+            </li>
+          </ul>
+        </form>
+        <div class="col-12 options mb-2 d-flex flex-wrap p-0"> <span class="option-items ml-1 mt-1">option</span > <span class="option-items ml-1 mt-1">option</span > <span class="option-items ml-1 mt-1">option</span> <span class="option-items ml-1 mt-1">option</span> <span class="option-items ml-1 mt-1">option</span> <span class="option-items ml-1 mt-1">option</span> </div>
+        <div class="chart-details col-12 p-0">
+          <p class="item-title text-capitalize"> <span class="chart-key ml-1 text-capitalize papers-ke"></span>Hospitals </p>
+          <div class="option-details-container">
+            <!-- <ul>
+              <li class="right-bar-show">some information</li>
+              <li class="right-bar-show">some information</li>
+              <li class="right-bar-show">some information</li>
+              <li class="right-bar-show">some information</li>
+              <li class="right-bar-show">some information</li>
+              <li class="right-bar-show">some information</li>
+              <li class="right-bar-show">some information</li>
+              <li class="right-bar-show">some information</li>
+            </ul> -->
+          </div>
+          <p class="item-title text-capitalize "> <span class="chart-key ml-1 text-capitalize citations-key"></span> Patients </p>
+          <div class="option-details-container">
+            <!-- <ul>
+              <li class="right-bar-show">some information</li>
+              <li class="right-bar-show">some information</li>
+              <li class="right-bar-show">some information</li>
+              <li class="right-bar-show">some information</li>
+              <li class="right-bar-show">some information</li>
+              <li class="right-bar-show">some information</li>
+              <li class="right-bar-show">some information</li>
+              <li class="right-bar-show">some information</li>
+            </ul> -->
+          </div>
+          <p class="item-title text-capitalize "> <span class="chart-key ml-1 text-capitalize authors-key"></span>  </p>
+          <div class="option-details-container">
+            <div class="chart1 ct-chart" id="chart1" style="position: relative; height:35px;"> </div>
+            <div class="ct-chart"></div>
+            <ul>
+              <li  class="right-bar-show">Doctor Name</li>
+            </ul>
+          </div>
+          <div class="option-details-container">
+            <div class="chart2 ct-chart" id="chart2" style="position: relative; height:35px;"> </div>
+            <div class="ct-chart"></div>
+            <ul>
+              <li  class="right-bar-show"></li>
+            </ul>
+          </div>
+          <div class="option-details-container">
+            <div class="chart3 ct-chart" id="chart3" style="position: relative; height:35px;"> </div>
+            <div class="ct-chart"></div>
+            <ul>
+              <li class="right-bar-show"></li>
+            </ul>
+          </div>
+          <p class="item-title text-capitalize "> <span class="chart-key ml-1 text-capitalize affiliations-key"></span> Affiliations (30) </p>
+          <div class="option-details-container">
+            <ul>
+              <li class="right-bar-show">some information</li>
+              <li class="right-bar-show">some information</li>
+              <li class="right-bar-show">some information</li>
+              <li class="right-bar-show">some information</li>
+              <li class="right-bar-show">some information</li>
+              <li class="right-bar-show">some information</li>
+              <li class="right-bar-show">some information</li>
+              <li class="right-bar-show">some information</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="graph"></div>
+    <!--		 right navigation bar-->
+    <div class="col-3 bg-black p-0 right-side-bar l-100">
+      <div class="right-content-container p-1 ml-4">
+        <div class="right-container">
+          <p class="item-title text-capitalize "> Selected article </p>
+          <div class="articleTitle"><a style="color:#fdaf2a" target="_blank" href="!#">Towards Digital Retina in Smart Cities: A Model Generation, Utilization and Communication Paradigm</a></div>
+          <p class="subTitle">Categories:</p>
+          <p class="text-white">cs.CV</p>
+          <p class="subTitle">Authors:</p>
+          <span style="color:#1a9dec" class="selector" data-id="3704">Yihang Lou </span> <span style="color:#1a9dec" class="selector" data-id="3706">Ling-yu Duan </span> <span style="color:#1a9dec" class="selector" data-id="3707">Yong Luo </span> <span style="color:#1a9dec" class="selector" data-id="1967">Ziqian Chen </span> <span style="color:#1a9dec" class="selector" data-id="2796">Tongliang Liu </span> <span style="color:#1a9dec" class="selector" data-id="2186">Shiqi Wang </span> <span style="color:#1a9dec" class="selector" data-id="3710">Wen Gao </span>
+          <p class="subTitle">Link:</p>
+          <a style="text-decoration:none; color:white;" target="_blank" href="#">https://arxiv.org/pdf/1812.09822v4.pdf</a>
+          <p class="subTitle">Abstract:</p>
+          <p class="content-info text-white text-left">Recent attacks have broken process isolation by exploiting microarchitectural side channels that allow indirect access to shared microarchitectural state. Enclaves strengthen the process abstraction to restore isolation guarantees.
+            We propose MI6, an aggressive, speculative out-of-order processor capable of providing secure enclaves under a threat model that includes an untrusted OS and an attacker capable of mounting any software attack currently considered practical, including control flow speculation attacks. MI6 is inspired by Sanctum [16] and extends its isolation guarantee to more realistic memory
+            hierarchies. It also introduces a purge instruction, which is used only when a
+            secure process is scheduled, and implements it for a complex processor
+            microarchitecture. We model the performance impact of enclaves in MI6 through
+            FPGA emulation on AWS F1 FPGAs by running SPEC CINT2006 benchmarks on top of an
+            untrusted Linux OS. Security comes at the cost of approximately 16.4% average
+            slowdown for protected programs.</p>
+          <p class="subTitle">Publication date:</p>
+          <p class="text-white mb-3">2019-08-03T02:13:34Z</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %} {% block javascript %}
+<script> 
+
+
+    //Constants for the SVG
+var width = 1000,
+    height = 500;
+
+//Set up the colour scale
+var color = d3.scale.category20();
+
+//Set up the force layout
+var force = d3.layout.force()
+    .charge(-120)
+    .linkDistance(30)
+    .size([width, height]);
+
+//Append a SVG to the body of the html page. Assign this SVG as an object to svg
+var svg = d3.select("#graph").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+//Read the data from the mis element 
+ var graph = JSON.parse('{{ geocode | tojson }}');
+
+//Creates the graph data structure out of the json data
+force.nodes(graph.nodes)
+    .links(graph.links)
+    .start();
+
+//Create all the line svgs but without locations yet
+var link = svg.selectAll(".link")
+    .data(graph.links)
+    .enter().append("line")
+    .attr("class", "link")
+    .style("stroke-width", function (d) {
+    return Math.sqrt(d.value);
+});
+
+//Do the same with the circles for the nodes - no 
+var node = svg.selectAll(".node")
+    .data(graph.nodes)
+    .enter().append("circle")
+    .attr("class", "node")
+    .attr("r", 8)
+    .style("fill", function (d) {
+    return color(d.group);
+})
+    
+ .on('dblclick', connectedNodes);
+    
+
+
+//Now we are giving the SVGs co-ordinates - the force layout is generating the co-ordinates which this code is using to update the attributes of the SVG elements
+force.on("tick", function () {
+    link.attr("x1", function (d) {
+        return d.source.x;
+    })
+        .attr("y1", function (d) {
+        return d.source.y;
+    })
+        .attr("x2", function (d) {
+        return d.target.x;
+    })
+        .attr("y2", function (d) {
+        return d.target.y;
+    });
+
+    node.attr("cx", function (d) {
+        return d.x;
+    })
+        .attr("cy", function (d) {
+        return d.y;
+    });
+});
+
+var optArray = [];
+for (var i = 0; i < graph.nodes.length - 1; i++) {
+    optArray.push(graph.nodes[i].name);
+}
+optArray = optArray.sort();
+$(function () {
+    $("#searchGraph").autocomplete({
+        source: optArray
+    });
+});
+function searchNode() {
+    //find the node
+    var selectedVal = document.getElementById('searchGraph').value;
+    var node = svg.selectAll(".node");
+    if (selectedVal == "none") {
+        node.style("stroke", "white").style("stroke-width", "1");
+    } else {
+        var selected = node.filter(function (d, i) {
+            return d.name != selectedVal;
+        });
+        selected.style("opacity", "0");
+        var link = svg.selectAll(".link")
+        link.style("opacity", "0");
+        d3.selectAll(".node, .link").transition()
+            .duration(5000)
+            .style("opacity", 1);
+    }
+}
+//Toggle stores whether the highlighting is on
+var toggle = 0;
+//Create an array logging what is connected to what
+var linkedByIndex = {};
+for (i = 0; i < graph.nodes.length; i++) {
+    linkedByIndex[i + "," + i] = 1;
+};
+graph.links.forEach(function (d) {
+    linkedByIndex[d.source.index + "," + d.target.index] = 1;
+});
+//This function looks up whether a pair are neighbours
+function neighboring(a, b) {
+    return linkedByIndex[a.index + "," + b.index];
+}
+function connectedNodes() {
+    if (toggle == 0) {
+        //Reduce the opacity of all but the neighbouring nodes
+        d = d3.select(this).node().__data__;
+        node.style("opacity", function (o) {
+            return neighboring(d, o) | neighboring(o, d) ? 1 : 0.1;
+        });
+        link.style("opacity", function (o) {
+            return d.index==o.source.index | d.index==o.target.index ? 1 : 0.1;
+        });
+        //Reduce the op
+        toggle = 1;
+    } else {
+        //Put them back to opacity=1
+        node.style("opacity", 1);
+        link.style("opacity", 1);
+        toggle = 0;
+    }
+}
+</script>
+{% endblock %}

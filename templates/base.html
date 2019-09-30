@@ -1,0 +1,59 @@
+<html>
+  <head>
+    {% if title %}
+    <title>{{ title }} - Microblog</title>
+    {% else %}
+    <title>Welcome to Microblog!</title>
+    {% endif %}
+
+    <link
+      href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,400,500,600,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename = 'css/fontawesome.min.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename = 'css/all.min.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename = 'bootstrap-4.3.1-dist/css/bootstrap.min.css') }}"
+    />
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename = 'css/style.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300"
+    />
+   
+
+    </style>
+  </head>
+
+  <body>
+      
+    {% block main %}{% endblock %}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename = 'js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename = 'js/all.min.js') }}"></script>
+    <script src="{{ url_for('static', filename = 'js/Tooltip.js') }}"></script>
+    <script src="{{ url_for('static', filename = 'js/d3.v2.js') }}"></script>
+    <script src="{{ url_for('static', filename = 'js/plugins.js') }}"></script>
+    <script src="{{ url_for('static', filename = 'js/modernizr-2.0.6.min.js') }}"></script>
+    <script src="https://d3js.org/d3.v2.js"></script>
+    <script type='text/javascript' src="http://code.jquery.com/ui/1.11.0/jquery-ui.min.js"> </script>
+<script type='text/javascript' src="http://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css"> </script>
+    
+    {% block javascript %}{% endblock %}
+  </body>
+</html>
