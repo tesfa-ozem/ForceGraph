@@ -10,9 +10,8 @@
     stroke-opacity: .6;
 }
 #graph{
-    display: flex;
-    justify-content:end;
-    justify-self: end;
+  
+   
 }
 body{
 	font-family: 'IBM Plex Sans', sans-serif;

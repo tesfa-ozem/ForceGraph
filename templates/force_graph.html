@@ -10,16 +10,32 @@
             <div id="projectTitle"><i>Hospital Nodes</i></div>
           </div>
         </li>
+        <li class="nav-item ">
+             <div id="search_form" class="d-flex search-form ui-widget" >
+            <form action="/upload-image" method="POST" enctype="multipart/form-data">
+                <ul class="dropdown bg-black d-flex m-0 p-0">
+                    <li>
+                        <input type="file"   name="file"/>
+                    </li>
+                    <li>
+                         <button  type="submit"  class="bg-black ">Upload</button>
+                    </li>
+                </ul>
+            
+           
+             </div>
+            
+       
+
+            </form>
+        </li>
         <li class="nav-item dropdown mega-dropdown">
           <div id="search_form" class="d-flex search-form ui-widget" >
-            
-			  
-			  	<button type="button" onclick="ReadNeo4j()" class="bg-black form-control">Neo4j</button>
-				<span class="filter bg-black d-flex align-content-center justify-content-center align-items-center">Filter <i class="fa fa-chevron-down ml-2"></i></span>
-			  
-            
+              
+            <button type="button" onclick="ReadNeo4j()" class="bg-black form-control">Connect Neo4j</button>
             </div>
         </li>
+        
         <li class="nav-item dropdown d-none"> <a class="nav-link" href="#section-2" id="navbarDropdown" role="button" aria-expanded="false"> <span class="d-md-block">Revenue Breakdown</span> </a> </li>
       </ul>
       <ul class="navbar-nav float-right">
@@ -42,34 +58,6 @@
                   </legend>
                 </li>
               
-                  <legend class="text-white mb-0">
-                  <p class="d-flex text-nowrap align-items-center"> <span class="text-white mr-1 ml-1 filterLabel">Result Size:</span>
-                    <select id="graphSizeSelector" class="form-control text-white border-0 nav-inputs">
-                      <option value="5">Very small</option>
-                      <option value="15">Small</option>
-                      <option value="30" selected="selected">Medium</option>
-                      <option value="60">Large</option>
-                      <option value="150">Very large</option>
-                    </select>
-                  </p>
-                  </legend>
-                </li>
-                <li>
-                     <form action="/upload-image" method="POST" enctype="multipart/form-data">
-
-        <div class="form-group">
-          <label>Select image</label>
-          <div class="custom-file">
-            <input type="file" class="custom-file-input" name="file" id="image">
-            <label class="custom-file-label" for="file">Select image...</label>
-          </div>
-        </div>
-
-        <button type="submit" class="btn btn-primary">Upload</button>
-
-      </form>
-                  
-                </li>
                 <li>
                   <legend class="text-white mb-0">
                   <p class="d-flex text-nowrap align-items-center"> <span class="text-white mr-1 ml-1 filterLabel">Categories:</span>
@@ -91,6 +79,7 @@
     <!--		 left navigation bar-->
     <div class="col-3 bg-black p-0 main-menu-section">
       <div class="menu-container p-2 ml-4">
+         
         <form class="d-flex search-form">
           <ul>
             <li>
@@ -165,47 +154,20 @@
           </div>
         </div>
       </div>
+      
     </div>
-    <div id="graph"></div>
+    <div class="col-9" >
+        <div id="graph"></div>
+    </div>
     <!--		 right navigation bar-->
-    <div class="col-3 bg-black p-0 right-side-bar l-100">
-      <div class="right-content-container p-1 ml-4">
-        <div class="right-container">
-          <p class="item-title text-capitalize "> Selected article </p>
-          <div class="articleTitle"><a style="color:#fdaf2a" target="_blank" href="!#">Towards Digital Retina in Smart Cities: A Model Generation, Utilization and Communication Paradigm</a></div>
-          <p class="subTitle">Categories:</p>
-          <p class="text-white">cs.CV</p>
-          <p class="subTitle">Authors:</p>
-          <span style="color:#1a9dec" class="selector" data-id="3704">Yihang Lou </span> <span style="color:#1a9dec" class="selector" data-id="3706">Ling-yu Duan </span> <span style="color:#1a9dec" class="selector" data-id="3707">Yong Luo </span> <span style="color:#1a9dec" class="selector" data-id="1967">Ziqian Chen </span> <span style="color:#1a9dec" class="selector" data-id="2796">Tongliang Liu </span> <span style="color:#1a9dec" class="selector" data-id="2186">Shiqi Wang </span> <span style="color:#1a9dec" class="selector" data-id="3710">Wen Gao </span>
-          <p class="subTitle">Link:</p>
-          <a style="text-decoration:none; color:white;" target="_blank" href="#">https://arxiv.org/pdf/1812.09822v4.pdf</a>
-          <p class="subTitle">Abstract:</p>
-          <p class="content-info text-white text-left">Recent attacks have broken process isolation by exploiting microarchitectural side channels that allow indirect access to shared microarchitectural state. Enclaves strengthen the process abstraction to restore isolation guarantees.
-            We propose MI6, an aggressive, speculative out-of-order processor capable of providing secure enclaves under a threat model that includes an untrusted OS and an attacker capable of mounting any software attack currently considered practical, including control flow speculation attacks. MI6 is inspired by Sanctum [16] and extends its isolation guarantee to more realistic memory
-            hierarchies. It also introduces a purge instruction, which is used only when a
-            secure process is scheduled, and implements it for a complex processor
-            microarchitecture. We model the performance impact of enclaves in MI6 through
-            FPGA emulation on AWS F1 FPGAs by running SPEC CINT2006 benchmarks on top of an
-            untrusted Linux OS. Security comes at the cost of approximately 16.4% average
-            slowdown for protected programs.</p>
-          <p class="subTitle">Publication date:</p>
-          <p class="text-white mb-3">2019-08-03T02:13:34Z</p>
-        </div>
-      </div>
-    </div>
+    
   </div>
 </section>
 {% endblock %} {% block javascript %}
 <script>
 
 //read file method
-function ReadNeo4j() {
-    alert("File read")
-    // fetch('file.txt')
-    //   .then(response => response.text())
-    //   .then(text => console.log(text))
 
-} 
     
 
 
@@ -342,5 +304,12 @@ function connectedNodes() {
         toggle = 0;
     }
 }
+function ReadNeo4j() {
+    alert("File read")
+    // fetch('file.txt')
+    //   .then(response => response.text())
+    //   .then(text => console.log(text))
+
+} 
 </script>
 {% endblock %}
