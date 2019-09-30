@@ -9,9 +9,9 @@
     stroke: #999;
     stroke-opacity: .6;
 }
-#graph{
-  
-   
+#graph {
+    margin-left: 400px;
+    padding-left: 400px;
 }
 body{
 	font-family: 'IBM Plex Sans', sans-serif;
