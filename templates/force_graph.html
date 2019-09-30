@@ -13,10 +13,10 @@
         <li class="nav-item dropdown mega-dropdown">
           <div id="search_form" class="d-flex search-form ui-widget" >
             
-			  <ul class="main-drop-container">
-			  	
-						<span class="filter bg-black d-flex align-content-center justify-content-center align-items-center">Filter <i class="fa fa-chevron-down ml-2"></i></span>
-			  </ul>
+			  
+			  	<button type="button" onclick="ReadNeo4j()" class="bg-black form-control">Neo4j</button>
+				<span class="filter bg-black d-flex align-content-center justify-content-center align-items-center">Filter <i class="fa fa-chevron-down ml-2"></i></span>
+			  
             
             </div>
         </li>
@@ -196,7 +196,17 @@
   </div>
 </section>
 {% endblock %} {% block javascript %}
-<script> 
+<script>
+
+//read file method
+function ReadNeo4j() {
+    alert("File read")
+    // fetch('file.txt')
+    //   .then(response => response.text())
+    //   .then(text => console.log(text))
+
+} 
+    
 
 
     //Constants for the SVG
